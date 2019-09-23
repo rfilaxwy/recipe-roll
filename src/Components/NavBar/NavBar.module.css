@@ -1,0 +1,6 @@
+.navBar {
+    border: 1px solid whitesmoke;
+    list-style: none;
+    background-color: rgb(30,34,39);
+    color: white;
+}

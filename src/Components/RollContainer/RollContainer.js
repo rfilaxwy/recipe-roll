@@ -1,5 +1,7 @@
 import React, { Component }  from 'react';
+import Button from '../Button/Button';
 import LookupList from '../LookupList/LookupList';
+import classes from './RollContainer.module.css';
 
 export default class RollContainer extends Component {
     constructor(props){
@@ -9,6 +11,12 @@ export default class RollContainer extends Component {
             newIngredient:''
         }
     }
+
+    handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+          this.addIngredient();
+        }
+      }
 
     newIngredientHandler = (event) => {
         this.setState({newIngredient:event.target.value})
@@ -24,8 +32,8 @@ export default class RollContainer extends Component {
     render(){
         return(
             <div>
-                <input value={this.state.newIngredient} onChange={(e)=>this.newIngredientHandler(e)}/>
-                <button onClick={this.addIngredient}> Add ingredient </button>
+                <input onKeyPress={this.handleKeyPress} className={classes.inputStyle} placeholder='Ingredient' value={this.state.newIngredient} onChange={(e)=>this.newIngredientHandler(e)}/>
+                <Button click={this.addIngredient} title='Add ingredient' />
                 <LookupList ingredients={this.state.ingredients} />
             </div>
         )
